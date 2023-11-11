@@ -21,16 +21,10 @@ def get_user_input():
     return float(input("Please enter your transaction amount "))
 
 
+# Add while loop to get input and condition to quit the loop
 add_value(get_user_input())
-adding = True
-i = 0
-while adding:
-    add_value(get_user_input(), get_last_value())
+add_value(last_transaction=get_last_value(), amount=get_user_input())
+add_value(get_user_input(), get_last_value())
 
-    for block in blockchain:
-        print(f"Outputting block \n{block}")
-    i += 1 
-    if i == 3:
-        adding = False
-
-print("DONE!!")
+print(blockchain)
+# TODO: Add for loop to loop through blockchain using in keyword
