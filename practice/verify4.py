@@ -29,28 +29,13 @@ def get_user_choice():
     return user_input
 
 def print_blockchain_elements():
-    for block in blockchain:
+     for block in blockchain:
         print(f"Outputting block \n{block}")
-    else:
-        print("-" * 20)
 
-def verify_chain():
-    index = 0
-    is_valid = True
-    for block in blockchain:
-        if index == 0:
-            index += 1
-            continue
-        elif block[0] == blockchain[index - 1]:
-            is_valid = True 
-        else:
-            is_valid = False 
-            break 
-        index += 1
-    return is_valid
+# TODO: Write a function to loop through the blockchain and validate data -- use a for in loop to check the last block index with the first block
 
-waiting_for_input = True 
-while waiting_for_input:
+
+while True:
     print("Please choose")
     print("1: Add a new transaction")
     print("2: Output the blockchain blocks")
@@ -66,15 +51,8 @@ while waiting_for_input:
         if len(blockchain) >= 1:
             blockchain[0] = [2]
     elif user_choice == "q":
-        waiting_for_input = False 
+        break
     else:
        print("Invalid input. Please pick a valid input.")
-    if not verify_chain():
-        print("Invalid blockchain.")
-        break
-else:
-    # executes when loop finishes
-    print("User left")
-
 
 print("DONE!!")

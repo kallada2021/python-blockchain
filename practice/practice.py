@@ -6,6 +6,17 @@ text = """this is text
     Line two
 !!!"""
 
+print(a != 1)
+print(a is 1)
+
+data = [1, 1.5, 3.4]
+more_data = [1, 1.5, 3.4]
+print(data == more_data)
+print(data is more_data)
+print(data is not more_data)
+print(1 in data)
+print(9 not in data)
+
 # list
 blockchain = [1, 8.6, 5.2]
 blockchain = [1, 8.6, 5.2, 10]
