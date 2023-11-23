@@ -39,6 +39,7 @@ def mine_block():
     last_block = blockchain[-1] # gets last value
     hashed_block = hash_block(last_block)
     # TODO: create a reward transaction to give the owner a balance when mining a block
+    # TODO: create a list to copy the open transactions to add to the block
     block = {
         "previous_hash": hashed_block, 
         "index": len(blockchain), 
@@ -116,6 +117,7 @@ while waiting_for_input:
         print_blockchain_elements()
         print("Invalid blockchain.")
         break
+    #TODO: add an f string to print the balance 
 else:
     # executes when loop finishes
     print("User left")
