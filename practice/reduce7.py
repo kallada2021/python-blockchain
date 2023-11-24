@@ -1,6 +1,4 @@
 import functools
-import hashlib
-import json 
 
 # initializing blockchain list
 MINING_REWARD = 10
@@ -10,7 +8,6 @@ genesis_block = {
     "index": 0, 
     "transactions": []
 }
-
 blockchain = [genesis_block]
 open_transactions = []
 owner = "Yusuf"
@@ -53,7 +50,6 @@ def add_transaction(recipient, sender=owner, amount=1.0):
 def mine_block():
     last_block = blockchain[-1] # gets last value
     hashed_block = hash_block(last_block)
-    print(f"hash {hashed_block}")
     reward_transaction = {
         "sender": "MINING",
         "recipient": owner,
@@ -88,23 +84,33 @@ def print_blockchain_elements():
 
 
 def hash_block(block):
-    return hashlib.sha256(json.dumps(block).encode()).hexdigest()
-    # return "-".join([str(block[key]) for key in block])
+    # TODO: create a hash by using the hashlib library
+    return "-".join([str(block[key]) for key in block])
 
 def get_balance(participant):
     tx_sender = [[tx["amount"] for tx in block["transactions"] if tx["sender"] == participant] for block in blockchain]
     open_tx_sender = [tx["amount"] for tx in open_transactions if tx["sender"] == participant]
     tx_sender.append(open_tx_sender)
-    
-    amount_sent = functools.reduce(lambda tx_sum, tx_amt: tx_sum +sum(tx_amt) if len(tx_amt) > 0 else tx_sum + 0, tx_sender, 0)
+    # TODO: refactor using the sum function to get all tx_amt
+    amount_sent = functools.reduce(lambda tx_sum, tx_amt: tx_sum + tx_amt[0] if len(tx_amt) > 0 else 0, tx_sender, 0)
+    # amount_sent = 0 
+    # print(f"tx sender {tx_sender}")
+    # for tx in tx_sender:
+    #     if len(tx) > 0:
+    #         amount_sent += tx[0]
     tx_recipient = [[tx["amount"] for tx in block["transactions"] if tx["recipient"] == participant] for block in blockchain]
-    amount_recieved = functools.reduce(lambda tx_sum, tx_amt: tx_sum + sum(tx_amt) if len(tx_amt) > 0 else tx_sum + 0, tx_recipient, 0)
+    # TODO: make the amount recieved for loop shorter by using reduce
+    amount_recieved = 0
+    for tx in tx_recipient:
+        if len(tx) > 0:
+            amount_recieved += tx[0]
    
     return amount_recieved - amount_sent
 
 def verify_chain():
     """Verifies the current blockchain and returns True if valid, False if not valid."""
     for (index, block) in enumerate(blockchain):  # creates tuple with index
+        print(block)
         if index == 0:
             continue
         if block["previous_hash"] != hash_block(blockchain[index -1]):
@@ -112,6 +118,13 @@ def verify_chain():
     return True 
 
 def verify_all_transactions():
+    # is_valid = True 
+    # for tx in open_transactions:
+    #     if verify_transaction(tx):
+    #         is_valid = True 
+    #     else:
+    #         is_valid = False 
+    # return is_valid
     return all([verify_transaction(tx) for tx in open_transactions])
 
 waiting_for_input = True 

@@ -40,14 +40,3 @@ print(f"a = {a} b = {b} c = {c}")
 # print(new_set[0])
 funds = 150.45435
 print("Funds: {:.2f}".format(funds))
-
-num_list = [1,2,3,4]
-
-def multiply(el):
-    return el * 2 
-
-newmap = map(multiply, num_list)
-print(list(newmap))
-
-# lambda
-print(list(map(lambda el: el * 2 , num_list)))
