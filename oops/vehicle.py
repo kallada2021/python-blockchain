@@ -8,7 +8,7 @@ class Vehicle():
         return f"Top Speed {self.top_speed} warnings {self.warnings}"
     
     def add_warning(self, warning):
-        if len(self.warnings) > 0:
+        if len(self.warnings) >= 0:
             self.warnings.append(warning)
             
     def get_warnings(self):

@@ -2,7 +2,7 @@ class Car:
     # top_speed = 100
     # warnings = []
     
-    def __init__(self, starting_speed=150,):
+    def __init__(self, starting_speed=150):
         self.top_speed = starting_speed
         self.warnings = []
         
@@ -11,7 +11,7 @@ class Car:
         return f"Top Speed {self.top_speed} warnings {self.warnings}"
     
     def add_warning(self, warning):
-        if len(self.warnings) > 0:
+        if len(self.warnings) >= 0:
             self.warnings.append(warning)
             
     def get_warnings(self):
@@ -35,3 +35,4 @@ car2 = Car()
 car2.drive()
 print(car2.warnings)
 print(car2.get_warnings())
+print(car2.__dict__)
