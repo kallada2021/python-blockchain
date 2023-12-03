@@ -4,7 +4,6 @@ class Vehicle():
         self.warnings = []
         
     def __repr__(self):
-        print("Printing car")
         return f"Top Speed {self.top_speed} warnings {self.warnings}"
     
     def add_warning(self, warning):
@@ -16,4 +15,5 @@ class Vehicle():
     
     def drive(self):
         print("Driving slower than {}".format(self.top_speed))
+    
   
