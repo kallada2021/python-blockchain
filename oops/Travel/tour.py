@@ -16,6 +16,10 @@ class Tour:
     
     def __repr__(self):
         return self.tour_name
+    
+    def change_tour_price(self, new_tour_price):
+        self.price = new_tour_price
+        return self.price
 
 
 
@@ -34,6 +38,8 @@ print(thai_tour.destination_cities, thai_tour.price)
 thai_city = thai_tour.add_destination_city(destination_city="Chiang Mai")
 # print(thai_city)
 
+new_price = thai_tour.change_tour_price(5000)
+print(new_price)
 
 tours = [tour, thai_tour]
 all_cities = []
@@ -42,3 +48,10 @@ for t in tours:
 
 print(all_cities)
 # print(tours)
+
+tour_prices = [tour.price, thai_tour.price]
+all_prices = []
+for price in tour_prices:
+    all_prices.append(price)
+
+print(all_prices)
